@@ -15,6 +15,7 @@ class _ThirdPageState extends State<ThirdPage> {
   }
 
   final items = List<String>.generate(10000, (i) => "Item $i");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,12 +26,12 @@ class _ThirdPageState extends State<ThirdPage> {
         itemCount: items.length,
         itemBuilder: (context, index) {
           return ListTile(
+            key: Key('${items[index]}'),
             title: Text('${items[index]}'),
           );
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        key: Key('3'),
         onPressed: () {
           Navigator.pop(context);
         },
