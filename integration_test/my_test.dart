@@ -7,7 +7,7 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets(
-    "failing test example",
+    "Performance Test",
     (WidgetTester tester) async {
       await tester.pumpWidget(MyApp());
 
@@ -79,6 +79,16 @@ void main() {
       );
       await tester.pump();
       expect(find.text('4'), findsOneWidget);
+      await tester.drag(
+        find.text('Panel Text'),
+        Offset(0, -300),
+      );
+      await tester.pumpAndSettle();
+      await tester.drag(
+        find.text('Panel Text'),
+        Offset(0, 300),
+      );
+      await tester.pumpAndSettle();
     },
   );
 }
