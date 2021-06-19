@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:pure_flutter/main.dart';
-import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +23,17 @@ void main() {
       );
       await tester.pump();
       expect(find.text('3'), findsOneWidget);
+
+      await tester.drag(
+        find.text('Panel Text'),
+        Offset(0, -300),
+      );
+      await tester.pumpAndSettle();
+      await tester.drag(
+        find.text('Panel Text'),
+        Offset(0, 300),
+      );
+      await tester.pumpAndSettle();
 
       // Page 2
       await tester.tap(
